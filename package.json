@@ -1,0 +1,15 @@
+{
+  "name": "Cheat-Inspector",
+  "version": "1",
+  "description": "Программа для обнаружения стороннего ПО, подозрительных файлов и возможных модификаций клиента GTA 5 RP / Majestic RP.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "elyrin",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "electron": "^41.0.4"
+  }
+}
