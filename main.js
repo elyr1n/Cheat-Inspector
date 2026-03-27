@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require("electron");
+const checkFolders = require("../Cheat-Inspector/src/modules/check_folders");
+const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
 
 let mainWindow;
@@ -23,5 +24,23 @@ app.whenReady().then(createWindow);
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
+  }
+});
+
+ipcMain.handle("load-folders", (event) => {
+  return checkFolders();
+});
+
+ipcMain.handle("open-folder", (event, pathFolder) => {
+  const splitPath = pathFolder.split("\\");
+  const exstFile = splitPath[splitPath.length - 1];
+  const splitPathWithoutExst = splitPath
+    .splice(0, splitPath.length - 1)
+    .join("\\");
+
+  if (path.extname(exstFile) === ".exe") {
+    shell.openPath(splitPathWithoutExst);
+  } else {
+    shell.openPath(pathFolder);
   }
 });
