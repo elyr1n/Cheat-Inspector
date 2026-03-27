@@ -34,14 +34,13 @@ ipcMain.handle("load-folders", (event) => {
 
 ipcMain.handle("open-folder", (event, pathFolder) => {
   const splitPath = pathFolder.split("\\");
-  const exstFile = splitPath[splitPath.length - 1];
   const splitPathWithoutExst = splitPath
     .splice(0, splitPath.length - 1)
     .join("\\");
 
   if (fs.statSync(pathFolder).isDirectory()) {
     shell.openPath(pathFolder);
-  } else if (path.extname(exstFile) === ".exe") {
+  } else if (path.extname(pathFolder) === ".exe") {
     shell.openPath(splitPathWithoutExst);
   } else {
     shell.openPath(pathFolder);
