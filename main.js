@@ -1,6 +1,7 @@
 const checkFolders = require("../Cheat-Inspector/src/modules/check_folders");
 const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
+const fs = require("fs");
 
 let mainWindow;
 
@@ -38,7 +39,9 @@ ipcMain.handle("open-folder", (event, pathFolder) => {
     .splice(0, splitPath.length - 1)
     .join("\\");
 
-  if (path.extname(exstFile) === ".exe") {
+  if (fs.statSync(pathFolder).isDirectory()) {
+    shell.openPath(pathFolder);
+  } else if (path.extname(exstFile) === ".exe") {
     shell.openPath(splitPathWithoutExst);
   } else {
     shell.openPath(pathFolder);
