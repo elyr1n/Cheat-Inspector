@@ -9,6 +9,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1000,
     height: 640,
+    resizable: false,
+    maximizable: false,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
