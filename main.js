@@ -1,4 +1,4 @@
-const checkFolders = require("../Cheat-Inspector/src/modules/check_folders");
+const checkFolders = require("./src/modules/check_folders");
 const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
 const fs = require("fs");
