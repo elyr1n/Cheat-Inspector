@@ -46,9 +46,7 @@ function checkFolders() {
           findPaths.push(path.join(dir, file));
         }
       });
-    } catch (err) {
-      console.log(err.message);
-    }
+    } catch (err) {}
   });
 
   return findPaths;
