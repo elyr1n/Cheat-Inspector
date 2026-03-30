@@ -9,7 +9,6 @@ const filePaths = [
   path.join(homedir, "AppData", "Local", "Temp"),
   path.join(homedir, "AppData", "Roaming"),
   path.join(homedir, "AppData", "Local"),
-  path.join(homedir, "Recent"),
   "C:\\Program Files (x86)",
   "C:\\Program Files",
 ];
@@ -47,7 +46,9 @@ function checkFolders() {
           findPaths.push(path.join(dir, file));
         }
       });
-    } catch (err) {}
+    } catch (err) {
+      console.log(err.message);
+    }
   });
 
   return findPaths;
