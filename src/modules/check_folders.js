@@ -42,7 +42,7 @@ function checkFolders() {
       const files = fs.readdirSync(dir);
 
       files.forEach((file) => {
-        if (cheatsPaths.includes(file)) {
+        if (cheatsPaths.some((cheat) => file.includes(cheat))) {
           findPaths.push(path.join(dir, file));
         }
       });
