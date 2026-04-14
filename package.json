@@ -1,6 +1,6 @@
 {
   "name": "Cheat-Inspector",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Программа для обнаружения стороннего ПО, подозрительных файлов и возможных модификаций клиента GTA 5 RP / Majestic RP.",
   "main": "main.js",
   "scripts": {
