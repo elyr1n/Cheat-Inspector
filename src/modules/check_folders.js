@@ -32,6 +32,7 @@ const cheatsPaths = [
   "millex",
   "skript",
   "orehware",
+  "unicore",
 ];
 
 function checkFolders() {
