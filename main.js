@@ -1,17 +1,19 @@
+const { app, BrowserWindow, ipcMain, shell, dialog } = require("electron");
 const checkFolders = require("./src/modules/check_folders");
-const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 640,
+    width: 1200,
+    height: 800,
     resizable: false,
     maximizable: false,
     autoHideMenuBar: true,
+    icon: path.join(__dirname, "icon.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -30,21 +32,34 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.handle("load-folders", (event) => {
-  return checkFolders();
+ipcMain.handle("load-folders", async (event) => {
+  return await checkFolders();
 });
 
-ipcMain.handle("open-folder", (event, pathFolder) => {
+ipcMain.handle("open-folder", async (event, pathFolder) => {
   const splitPath = pathFolder.split("\\");
   const splitPathWithoutExst = splitPath
     .splice(0, splitPath.length - 1)
     .join("\\");
 
-  if (fs.statSync(pathFolder).isDirectory()) {
-    shell.openPath(pathFolder);
-  } else if (path.extname(pathFolder) === ".exe") {
-    shell.openPath(splitPathWithoutExst);
-  } else {
-    shell.openPath(pathFolder);
+  if (!fs.existsSync(pathFolder)) {
+    await dialog.showMessageBox(mainWindow, {
+      type: "error",
+      title: "Ошибка",
+      message: `Папка не найдена!\n[${pathFolder}]`,
+    });
+    return;
   }
+
+  if (fs.statSync(pathFolder).isDirectory()) {
+    await shell.openPath(pathFolder);
+  } else if (path.extname(pathFolder) === ".exe") {
+    await shell.openPath(splitPathWithoutExst);
+  } else {
+    await shell.openPath(pathFolder);
+  }
+});
+
+ipcMain.handle("get-home-dir", (event) => {
+  return os.homedir();
 });

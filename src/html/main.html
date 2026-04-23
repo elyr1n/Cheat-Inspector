@@ -34,23 +34,38 @@
     </style>
 </head>
 <body class="bg-[#0a0a0a] text-white font-mono select-none overflow-hidden h-screen">
-
     <div class="p-10 flex flex-col h-full">
-        <header class="flex justify-between items-baseline border-b border-border pb-6 mb-8">
-            <div class="text-2xl font-bold tracking-tighter">
-                Cheat<span class="font-normal text-gray-500">-Inspector</span>
+        <header>
+            <div class="flex gap-4">
+                <button id="openRecentBtn" class="border border-white px-8 py-3 font-bold hover:bg-white hover:text-black transition-all duration-300 active:scale-95">
+                    Recent
+                </button>
+
+                <button id="openCrashDumpsBtn" class="border border-white px-8 py-3 font-bold hover:bg-white hover:text-black transition-all duration-300 active:scale-95">
+                    CrashDumps
+                </button>
+
+                <button id="openPrefetchBtn" class="border border-white px-8 py-3 font-bold hover:bg-white hover:text-black transition-all duration-300 active:scale-95">
+                    Prefetch
+                </button>
+
+                <button id="openRecyclesBtn" class="border border-white px-8 py-3 font-bold hover:bg-white hover:text-black transition-all duration-300 active:scale-95">
+                    Recycles
+                </button>
             </div>
         </header>
+
+        <div class="border-t border-border my-6"></div>
 
         <main class="flex flex-col flex-grow overflow-hidden">
             <div class="mb-8">
                 <button id="scanBtn" class="border border-white px-8 py-3 font-bold hover:bg-white hover:text-black transition-all duration-300 active:scale-95">
-                    Запустить
+                    Запустить проверку
                 </button>
             </div>
 
             <div class="flex-grow overflow-y-auto pr-2">
-                <div class="text-[11px] text-gray-500 mb-4 tracking-[0.2em] uppercase">Найденные директории:</div>
+                <div id="directories" class="text-[11px] text-gray-500 mb-4 tracking-[0.2em] uppercase"></div>
                 <ul id="result" class="space-y-2"></ul>
             </div>
         </main>

@@ -14,7 +14,7 @@ const filePaths = [
 ];
 
 const cheatsPaths = [
-  "ret9_fun",
+  "ret9",
   "amph",
   "Rar$",
   "1337",
@@ -26,7 +26,7 @@ const cheatsPaths = [
   "immunity",
   "build",
   "hydrogen",
-  "Gta_loader",
+  "gta",
   "loader",
   "opium",
   "millex",
@@ -43,7 +43,7 @@ function checkFolders() {
       const files = fs.readdirSync(dir);
 
       files.forEach((file) => {
-        if (cheatsPaths.some((cheat) => file.includes(cheat))) {
+        if (cheatsPaths.some((cheat) => file.toLowerCase().includes(cheat))) {
           findPaths.push(path.join(dir, file));
         }
       });

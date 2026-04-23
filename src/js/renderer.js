@@ -1,9 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const result = document.getElementById("result");
   const scanBtn = document.getElementById("scanBtn");
+  const openRecentBtn = document.getElementById("openRecentBtn");
+  const directories = document.getElementById("directories");
+  const openPrefetchBtn = document.getElementById("openPrefetchBtn");
+  const openRecyclesBtn = document.getElementById("openRecyclesBtn");
+  const openCrashDumpsBtn = document.getElementById("openCrashDumpsBtn");
+
+  const homeDir = await window.api.getHomeDir();
+
+  const openFolder = async (path) => {
+    window.api.openFolder(path);
+  };
 
   const renderFolders = async () => {
-    result.innerHTML = "";
     const paths = await window.api.loadFolders();
 
     if (paths.length === 0) {
@@ -25,10 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
         flex items-center text-sm
       `;
 
-      li.style.animationDelay = `${index * 0.05}s`;
-
       li.innerHTML = `
-        <span class="text-gray-600 mr-4 text-[16px]">${index + 1}</span>
+        <span class="text-gray-600 mr-4 text-[16px]">[${index + 1}]</span>
         <span class="truncate">${path}</span>
       `;
 
@@ -40,13 +48,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  openRecentBtn.addEventListener("click", async () => {
+    await openFolder(`${homeDir}\\Recent`);
+  });
+
+  openCrashDumpsBtn.addEventListener("click", async () => {
+    await openFolder(`${homeDir}\\AppData\\Local\\CrashDumps`);
+  });
+
+  openPrefetchBtn.addEventListener("click", async () => {
+    await openFolder("C:\\Windows\\Prefetch");
+  });
+
+  openRecyclesBtn.addEventListener("click", async () => {
+    await openFolder("C:\\$Recycle.Bin");
+    await openFolder("D:\\$Recycle.Bin");
+  });
+
   scanBtn.addEventListener("click", async () => {
     scanBtn.textContent = "Сканирование...";
     scanBtn.classList.add("opacity-50");
 
     await renderFolders();
 
-    scanBtn.textContent = "Запустить";
+    directories.textContent = "Найденные директории:";
+
+    scanBtn.textContent = "Запустить проверку";
     scanBtn.classList.remove("opacity-50");
   });
 });
