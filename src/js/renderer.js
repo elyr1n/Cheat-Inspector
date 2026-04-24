@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const renderFolders = async () => {
+    result.innerHTML = "";
+
     const paths = await window.api.loadFolders();
 
     if (paths.length === 0) {
