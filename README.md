@@ -120,7 +120,7 @@ The project uses `electron-builder` for packaging. The build output is configure
     "output": "dist"
   },
   "win": {
-    "target": "nsis",
+    "target": "portable",
     "icon": "icon.ico"
   }
 }
