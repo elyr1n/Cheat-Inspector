@@ -112,13 +112,6 @@ The project uses `electron-builder` for packaging. The build output is configure
 }
 ```
 
-### Build Commands / Команды сборки
-
-| Command | Description |
-|---------|-------------|
-| `npm start` | Run in development mode |
-| `npm run build` | Build executable for Windows |
-
 ---
 
 ## Disclaimer / Отказ от ответственности
