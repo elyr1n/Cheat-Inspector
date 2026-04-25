@@ -33,13 +33,6 @@ Cheat-Inspector provides a fast way to scan critical system directories for spec
 - **Typography**: Ubuntu Mono
 - **Runtime**: Node.js
 
-### Installation & Building
-
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Execute `npm start` to launch the application in development mode.
-4. Run `npm run build` to build a standalone executable (Windows `.exe`).
-
 ---
 
 ## Русское описание
@@ -80,14 +73,7 @@ Cheat-Inspector provides a fast way to scan critical system directories for spec
 - **Фреймворк**: Electron
 - **Стилизация**: Tailwind CSS
 - **Типографика**: Ubuntu Mono
-- **Среда выполнения**: Node.js
-
-### Установка и сборка
-
-1. Клонируйте репозиторий.
-2. Выполните `npm install` для установки зависимостей.
-3. Выполните `npm start` для запуска приложения в режиме разработки.
-4. Выполните `npm run build` для сборки portable исполняемого файла (Windows `.exe`).
+- **Среда выполнения**: Node.j
 
 ---
 
